@@ -8,22 +8,40 @@
 </head>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1>JSON POJO Frontend</h1>
+    
+    <div class="input">
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>JSON POJO Frontend</h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <textarea class="form-control json-source" cols="30" rows="10" placeholder="Your JSON goes here"></textarea>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <textarea class="form-control json-source" cols="30" rows="10" placeholder="Your JSON goes here"></textarea>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <button type="button" class="btn btn-default compile-button">Compile</button>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="button" class="btn btn-default compile-button">Compile</button>
+        </div>
       </div>
+    
     </div>
+
+    <div class="output">
+      
+      
+
+    </div>
+
   </div>
-  <script src="request.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/JSXTransformer.js"></script>
+  <script type="text/jsx" src="request.js"></script>
 </body>
 </html>

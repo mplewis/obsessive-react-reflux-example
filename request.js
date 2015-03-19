@@ -1,5 +1,30 @@
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 
+var JavaClassList = React.createClass({
+  render: function() {
+    var nodes = []
+    
+    _.each(_.pairs(this.props.files), function(filepair) {
+      var filename = filepair[0]
+      var filedata = filepair[1]
+      nodes.push(
+        <div className="row">
+          <div className="col-md-12">
+            <h1>{filename}</h1>
+            <pre>{filedata}</pre>
+          </div>
+        </div>
+      )
+    })
+
+    return (
+      <div className="java-classes">
+        {nodes}
+      </div>
+    )
+  }
+})
+
 function processJson(jsonString) {
 
   console.log('Compiling:', jsonString);
@@ -12,6 +37,12 @@ function processJson(jsonString) {
     if (this.status >= 200 && this.status < 400) {
       var data = JSON.parse(this.response)
       console.log(data)
+      
+      React.render(
+        <JavaClassList files={data} />,
+        document.querySelector('.output')
+      )
+    
     } else {
       console.log('Server returned error', this.status)
     }

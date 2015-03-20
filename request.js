@@ -1,43 +1,8 @@
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 
-var BootstrapRow = React.createClass({
-  render: function() {
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          {this.props.children}
-        </div>
-      </div>
-    )
-  }
-})
-
-var JavaClassList = React.createClass({
-  render: function() {
-    var nodes = []
-
-    nodes.push(
-      <BootstrapRow>
-        <button type="button" className="btn btn-primary download-all">Download all</button>
-      </BootstrapRow>
-    )
-    
-    _.each(this.props.files, function(file) {
-      nodes.push(
-        <BootstrapRow>
-          <h1>{file.name}</h1>
-          <pre>{file.data}</pre>
-        </BootstrapRow>
-      )
-    })
-
-    return (
-      <div className="java-classes">
-        {nodes}
-      </div>
-    )
-  }
-})
+var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
+var CONSTRUCTOR_START = 'public class'
+var PARCEL_ANNOTATION = '@Parcel\n'
 
 function processJson(jsonString, callback) {
 
@@ -89,9 +54,6 @@ function renderFiles(files) {
 }
 
 function addParcelAnnotation(classData) {
-  var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
-  var CONSTRUCTOR_START = 'public class'
-  var PARCEL_ANNOTATION = '@Parcel\n'
   var parts = classData.split(CONSTRUCTOR_START, 2)
   var newData = PARCEL_IMPORT + parts[0] + PARCEL_ANNOTATION + CONSTRUCTOR_START + parts[1]
   return newData

@@ -3,15 +3,21 @@ var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.
 var JavaClassList = React.createClass({
   render: function() {
     var nodes = []
+
+    nodes.push(
+      <div className="row">
+        <div className="col-md-12">
+          <button type="button" className="btn btn-primary download-all">Download all</button>
+        </div>
+      </div>
+    )
     
-    _.each(_.pairs(this.props.files), function(filepair) {
-      var filename = filepair[0]
-      var filedata = filepair[1]
+    _.each(this.props.files, function(file) {
       nodes.push(
         <div className="row">
           <div className="col-md-12">
-            <h1>{filename}</h1>
-            <pre>{filedata}</pre>
+            <h1>{file.name}</h1>
+            <pre>{file.data}</pre>
           </div>
         </div>
       )
@@ -35,13 +41,31 @@ function processJson(jsonString) {
 
   request.onload = function() {
     if (this.status >= 200 && this.status < 400) {
-      var data = JSON.parse(this.response)
-      console.log(data)
+      var data = JSON.parse(this.response)    
+      var files = []
+      _.each(_.pairs(data), function(filepair) {
+        files.push({name: filepair[0], data: filepair[1]})
+      })
       
       React.render(
-        <JavaClassList files={data} />,
+        <JavaClassList files={files} />,
         document.querySelector('.output')
       )
+
+      var generatedZip = null;
+      var downloadButton = document.querySelector('.download-all')
+      downloadButton.addEventListener('click', function() {
+        
+        if (!generatedZip) {
+          zip = new JSZip();
+          _.each(files, function(file) {
+            zip.file(file.name, file.data)
+          })
+          generatedZip = zip.generate({type: 'blob'})
+        }
+        
+        saveAs(generatedZip, 'JavaClasses.zip')
+      })
     
     } else {
       console.log('Server returned error', this.status)

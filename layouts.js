@@ -1,3 +1,6 @@
+var TabbedArea = ReactBootstrap.TabbedArea
+var TabPane = ReactBootstrap.TabPane
+
 var BootstrapRow = React.createClass({
   render: function() {
     return (
@@ -13,26 +16,26 @@ var BootstrapRow = React.createClass({
 var JavaClassList = React.createClass({
   render: function() {
     var nodes = []
-
-    nodes.push(
-      <BootstrapRow>
-        <button type="button" className="btn btn-primary download-all">Download all</button>
-      </BootstrapRow>
-    )
     
+    var i = 0
     _.each(this.props.files, function(file) {
+      i++
       nodes.push(
-        <BootstrapRow>
-          <h1>{file.name}</h1>
+        <TabPane eventKey={i} tab={file.name}>
           <pre>{file.data}</pre>
-        </BootstrapRow>
+        </TabPane>
       )
     })
 
     return (
-      <div className="tab-content">
-        {nodes}
-      </div>
+      <span>
+        <BootstrapRow>
+          <button type="button" className="btn btn-primary download-all">Download all</button>
+        </BootstrapRow>
+        <TabbedArea defaultActiveKey={1}>
+          {nodes}
+        </TabbedArea>
+      </span>
     )
   }
 })

@@ -7,6 +7,10 @@ textarea {
   font-family: 'Inconsolata', 'Anonymous Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
 }
 
+pre {
+  border-top: none;
+}
+
 .row {
   margin-bottom: 10px;
 }

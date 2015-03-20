@@ -52,18 +52,13 @@ function processJson(jsonString) {
         document.querySelector('.output')
       )
 
-      var generatedZip = null;
       var downloadButton = document.querySelector('.download-all')
       downloadButton.addEventListener('click', function() {
-        
-        if (!generatedZip) {
-          zip = new JSZip();
-          _.each(files, function(file) {
-            zip.file(file.name, file.data)
-          })
-          generatedZip = zip.generate({type: 'blob'})
-        }
-        
+        zip = new JSZip();
+        _.each(files, function(file) {
+          zip.file(file.name, file.data)
+        })
+        generatedZip = zip.generate({type: 'blob'})
         saveAs(generatedZip, 'JavaClasses.zip')
       })
     

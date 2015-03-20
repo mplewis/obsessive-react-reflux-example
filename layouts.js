@@ -22,7 +22,7 @@ var JavaClassList = React.createClass({
       i++
       nodes.push(
         <TabPane eventKey={i} tab={file.name}>
-          <pre>{file.data}</pre>
+          <pre><code className="java">{file.data}</code></pre>
         </TabPane>
       )
     })

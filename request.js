@@ -51,6 +51,10 @@ function renderFiles(files) {
     generatedZip = zip.generate({type: 'blob'})
     saveAs(generatedZip, 'JavaClasses.zip')
   })
+
+  _.each(document.querySelectorAll('pre code'), function(block) {
+    hljs.highlightBlock(block)
+  })
 }
 
 function addParcelAnnotation(classData) {

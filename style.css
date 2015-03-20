@@ -3,14 +3,21 @@ body {
   margin-bottom: 40px;
 }
 
-textarea {
+textarea, pre {
   font-family: 'Inconsolata', 'Anonymous Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
 }
 
 pre {
-  border-top: none;
+  border: none;
+  background: none;
 }
 
 .row {
   margin-bottom: 10px;
+}
+
+.download-all {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }

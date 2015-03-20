@@ -39,7 +39,7 @@ var JavaClassList = React.createClass({
   }
 })
 
-function processJson(jsonString) {
+function processJson(jsonString, callback) {
 
   console.log('Compiling:', jsonString);
 
@@ -56,7 +56,7 @@ function processJson(jsonString) {
         files.push({name: filepair[0], data: filepair[1]})
       })
 
-      renderFiles(files)
+      callback(files)
     
     } else {
       console.log('Server returned error', this.status)
@@ -88,7 +88,17 @@ function renderFiles(files) {
   })
 }
 
-var compileButton = document.querySelector('.compile-button')
+function addParcelAnnotation(classData) {
+  var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
+  var CONSTRUCTOR_START = 'public class'
+  var PARCEL_ANNOTATION = '@Parcel\n'
+  var parts = classData.split(CONSTRUCTOR_START, 2)
+  var newData = PARCEL_IMPORT + parts[0] + PARCEL_ANNOTATION + CONSTRUCTOR_START + parts[1]
+  return newData
+}
+
+var compileStandardButton = document.querySelector('.compile-standard')
+var compileParcelableButton = document.querySelector('.compile-parcelable')
 var jsonSource = document.querySelector('.json-source')
 
 jsonSource.value =
@@ -101,7 +111,17 @@ jsonSource.value =
 '  ]' + '\n' +
 '}'
 
-compileButton.addEventListener('click', function() {
-  console.log('onCompileClick')
-  processJson(jsonSource.value)
+compileStandardButton.addEventListener('click', function() {
+  processJson(jsonSource.value, function(files) {
+    renderFiles(files)
+  })
+})
+
+compileParcelableButton.addEventListener('click', function() {
+  processJson(jsonSource.value, function(files) {
+    _.each(files, function(file) {
+      file.data = addParcelAnnotation(file.data)
+    })
+    renderFiles(files)
+  })
 })

@@ -1,4 +1,6 @@
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
+var DEFAULT_RESPONSE_URL = 'default.json'
+var USE_DEFAULT_RESPONSE = true;
 
 var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
 var CONSTRUCTOR_START = 'public class'
@@ -9,8 +11,12 @@ function processJson(jsonString, callback) {
   console.log('Compiling:', jsonString);
 
   var request = new XMLHttpRequest()
-  request.open('POST', JSON_POJO_ENDPOINT, true)
-  request.setRequestHeader('Content-Type', 'application/json charset=UTF-8')
+  if (USE_DEFAULT_RESPONSE) {
+    request.open('GET', DEFAULT_RESPONSE_URL, true)
+  } else {
+    request.open('POST', JSON_POJO_ENDPOINT, true)
+    request.setRequestHeader('Content-Type', 'application/json charset=UTF-8')
+  }
 
   request.onload = function() {
     if (this.status >= 200 && this.status < 400) {

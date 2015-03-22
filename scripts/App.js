@@ -60,6 +60,7 @@ var CompileParcelableButton = React.createClass({
   onClick: function() {
     console.log('Compile parcelable clicked');
   },
+
   render: function() {
     return (
       <button
@@ -67,6 +68,23 @@ var CompileParcelableButton = React.createClass({
         className="btn btn-default"
         onClick={this.onClick}>
         Parcelable Android POJO
+      </button>
+    )
+  }
+})
+
+var DownloadAllButton = React.createClass({
+  onClick: function() {
+    console.log('Download all clicked');
+  },
+
+  render: function() {
+    return (
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={this.onClick}>
+        Download all
       </button>
     )
   }
@@ -102,7 +120,7 @@ var Output = React.createClass({
   render: function() {
     return (
       <BootstrapRow>
-        <h1>Output goes here.</h1>
+        <JavaClassList />
       </BootstrapRow>
     )
   }
@@ -140,14 +158,14 @@ var JavaClassList = React.createClass({
     console.log(nodes);
 
     return (
-      <span>
+      <div>
         <BootstrapRow>
-          <button type="button" className="btn btn-primary download-all">Download all</button>
+          <DownloadAllButton />
         </BootstrapRow>
         <TabbedArea defaultActiveKey={1}>
           {nodes}
         </TabbedArea>
-      </span>
+      </div>
     )
   }
 })

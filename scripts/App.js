@@ -147,39 +147,32 @@ function addParcelAnnotation(classData) {
   return newData
 }
 
-var compileStandardButton = document.querySelector('.compile-standard')
-var compileParcelableButton = document.querySelector('.compile-parcelable')
-var jsonSource = document.querySelector('.json-source')
-
-jsonSource.value =
-'{' + '\n' +
-'  "name": "myTestObject",' + '\n' +
-'  "containers": [' + '\n' +
-'    {"name": "alpha", "running": true},' + '\n' +
-'    {"name": "bravo", "running": true},' + '\n' +
-'    {"name": "charlie", "running": false}' + '\n' +
-'  ]' + '\n' +
-'}'
-
-compileStandardButton.addEventListener('click', function() {
-  processJson(jsonSource.value, function(files) {
-    renderFiles(files)
-  })
-})
-
-compileParcelableButton.addEventListener('click', function() {
-  processJson(jsonSource.value, function(files) {
-    _.each(files, function(file) {
-      file.data = addParcelAnnotation(file.data)
-    })
-    renderFiles(files)
-  })
-})
-
 export default class App extends React.Component {
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <div class="container">
+        
+        <div class="input">
+          
+          <BootstrapRow>
+            <h1>JSON POJO Frontend</h1>
+          </BootstrapRow>
+
+          <BootstrapRow>
+            <SourceJsonTextArea />
+          </BootstrapRow>
+
+          <BootstrapRow>
+            <CompileStandardButton />
+            <CompileParcelableButton />
+          </BootstrapRow>
+        
+        </div>
+
+        <div class="output">
+        </div>
+
+      </div>
     );
   }
 }

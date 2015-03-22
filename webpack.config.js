@@ -1,4 +1,5 @@
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   devtool: 'eval',
@@ -14,9 +15,13 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
+    )
   ],
   resolve: {
+    root: [path.join(__dirname, 'bower_components')],
     extensions: ['', '.js', '.jsx']
   },
   module: {
@@ -24,4 +29,4 @@ module.exports = {
       { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ }
     ]
   }
-};
+}

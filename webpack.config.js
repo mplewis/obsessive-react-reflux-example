@@ -22,19 +22,16 @@ module.exports = {
   ],
   resolve: {
     root: [
-      path.join(__dirname, 'bower_components'),
-      path.join(__dirname, 'node_modules')
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'bower_components')
     ],
     extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/, /bower_components/] },
       { test: /\.css$/, loader: 'style!css' },
-      {
-          test: /\.(otf|eot|svg|ttf|woff)/,
-          loader: 'url-loader?limit=8192'
-      }
+      { test: /\.(otf|eot|svg|ttf|woff)/, loader: 'url-loader?limit=8192' }
     ]
   }
 }

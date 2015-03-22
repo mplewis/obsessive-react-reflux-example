@@ -89,7 +89,6 @@ var Input = React.createClass({
         <BootstrapRow>
           <SourceJsonTextArea />
         </BootstrapRow>
-
         <BootstrapRow>
           <CompileStandardButton />
           <CompileParcelableButton />

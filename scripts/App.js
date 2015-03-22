@@ -3,7 +3,9 @@ import ReactBootstrap from 'react-bootstrap'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 
+require('bootstrap/dist/css/bootstrap.min.css')
 require('highlight.js/styles/tomorrow.css')
+require('../styles/style.css')
 
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 var DEFAULT_RESPONSE_URL = 'default.json'
@@ -25,6 +27,84 @@ var BootstrapRow = React.createClass({
           {this.props.children}
         </div>
       </div>
+    )
+  }
+})
+
+var SourceJsonTextArea = React.createClass({
+  render: function() {
+    return (
+      <textarea className="form-control" cols="30" rows="10" placeholder="Your JSON goes here" />
+    )
+  }
+})
+
+var CompileStandardButton = React.createClass({
+  onClick: function() {
+    console.log('Compile standard clicked');
+  },
+
+  render: function() {
+    return (
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={this.onClick}>
+        Standard Java POJO
+      </button>
+    )
+  }
+})
+
+var CompileParcelableButton = React.createClass({
+  onClick: function() {
+    console.log('Compile parcelable clicked');
+  },
+  render: function() {
+    return (
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={this.onClick}>
+        Parcelable Android POJO
+      </button>
+    )
+  }
+})
+
+var Header = React.createClass({
+  render: function() {
+    return (
+      <BootstrapRow>
+        <h1>JSON POJO Frontend</h1>
+      </BootstrapRow>
+    )
+  }
+})
+
+var Input = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <BootstrapRow>
+          <SourceJsonTextArea />
+        </BootstrapRow>
+
+        <BootstrapRow>
+          <CompileStandardButton />
+          <CompileParcelableButton />
+        </BootstrapRow>
+      </div>
+    )
+  }
+})
+
+var Output = React.createClass({
+  render: function() {
+    return (
+      <BootstrapRow>
+        <h1>Output goes here.</h1>
+      </BootstrapRow>
     )
   }
 })
@@ -150,28 +230,10 @@ function addParcelAnnotation(classData) {
 export default class App extends React.Component {
   render() {
     return (
-      <div class="container">
-        
-        <div class="input">
-          
-          <BootstrapRow>
-            <h1>JSON POJO Frontend</h1>
-          </BootstrapRow>
-
-          <BootstrapRow>
-            <SourceJsonTextArea />
-          </BootstrapRow>
-
-          <BootstrapRow>
-            <CompileStandardButton />
-            <CompileParcelableButton />
-          </BootstrapRow>
-        
-        </div>
-
-        <div class="output">
-        </div>
-
+      <div className="container">
+        <Header />
+        <Input />
+        <Output />
       </div>
     );
   }

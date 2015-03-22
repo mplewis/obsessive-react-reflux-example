@@ -30,7 +30,11 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.css$/, loader: 'style!css' }
+      { test: /\.css$/, loader: 'style!css' },
+      {
+          test: /\.(otf|eot|svg|ttf|woff)/,
+          loader: 'url-loader?limit=8192'
+      }
     ]
   }
 }

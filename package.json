@@ -10,10 +10,12 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
+    "css-loader": "^0.9.1",
     "highlight.js": "^8.4.0",
     "jszip": "^2.5.0",
     "lodash": "^3.5.0",
-    "react": "^0.13.0"
+    "react": "^0.13.0",
+    "style-loader": "^0.8.3"
   },
   "scripts": {
     "start": "node server.js"

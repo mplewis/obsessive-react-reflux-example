@@ -21,12 +21,16 @@ module.exports = {
     )
   ],
   resolve: {
-    root: [path.join(__dirname, 'bower_components')],
+    root: [
+      path.join(__dirname, 'bower_components'),
+      path.join(__dirname, 'node_modules')
+    ],
     extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ }
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.css$/, loader: 'style!css' }
     ]
   }
 }

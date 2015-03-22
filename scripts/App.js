@@ -3,6 +3,8 @@ import ReactBootstrap from 'react-bootstrap'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 
+require('highlight.js/styles/tomorrow.css')
+
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 var DEFAULT_RESPONSE_URL = 'default.json'
 var USE_DEFAULT_RESPONSE = true;

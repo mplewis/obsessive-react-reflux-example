@@ -15,10 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "react-bootstrap": "~0.17.0",
-    "lodash": "~3.5.0",
-    "jszip": "~2.5.0",
-    "FileSaver": "*",
-    "highlightjs": "~8.4.0"
+    "FileSaver": "*"
   }
 }

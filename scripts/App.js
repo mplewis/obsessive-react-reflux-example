@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactBootstrap from 'react-bootstrap'
 import _ from 'lodash'
-import hljs from 'highlightjs'
+import hljs from 'highlight.js'
 
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 var DEFAULT_RESPONSE_URL = 'default.json'

@@ -1,6 +1,7 @@
 var JSON_POJO_ENDPOINT = 'http://json-pojo-server-271bbe43-1.mplewis.cont.tutum.io:49154/'
 var DEFAULT_RESPONSE_URL = 'default.json'
 var USE_DEFAULT_RESPONSE = true;
+var ADD_RESPONSE_DELAY = true;
 
 var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
 var CONSTRUCTOR_START = 'public class'
@@ -17,6 +18,11 @@ function processJson(jsonString, callback) {
     request.open('POST', JSON_POJO_ENDPOINT, true)
     request.setRequestHeader('Content-Type', 'application/json charset=UTF-8')
   }
+  
+  React.render(
+    <JavaClassList />,
+    document.querySelector('.output')
+  )
 
   request.onload = function() {
     if (this.status >= 200 && this.status < 400) {
@@ -27,7 +33,13 @@ function processJson(jsonString, callback) {
         files.push({name: filepair[0], data: filepair[1]})
       })
 
-      callback(files)
+      if (ADD_RESPONSE_DELAY) {
+        window.setTimeout(function() {
+          callback(files)
+        }, 1000)
+      } else {
+        callback(files)
+      }
     
     } else {
       console.log('Server returned error', this.status)

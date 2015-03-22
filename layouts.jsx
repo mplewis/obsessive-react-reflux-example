@@ -14,11 +14,11 @@ var BootstrapRow = React.createClass({
 })
 
 var JavaClassList = React.createClass({
-  render: function() {
+  nodesFromFiles: function(files) {
     var nodes = []
     
     var i = 0
-    _.each(this.props.files, function(file) {
+    _.each(files, function(file) {
       i++
       nodes.push(
         <TabPane eventKey={i} tab={file.name}>
@@ -26,6 +26,23 @@ var JavaClassList = React.createClass({
         </TabPane>
       )
     })
+
+    return nodes
+  },
+
+  render: function() {
+    var nodes;
+    if (this.props.files) {
+      nodes = this.nodesFromFiles(this.props.files)
+    } else {
+      nodes = [
+        <TabPane eventKey={1} tab={"Loading..."}>
+          Loading...
+        </TabPane>
+      ]
+    }
+
+    console.log(nodes);
 
     return (
       <span>

@@ -1,0 +1,28 @@
+{
+  "name": "json-pojo-frontend",
+  "version": "0.0.0",
+  "description": "",
+  "devDependencies": {
+    "babel-core": "^4.7.4",
+    "babel-loader": "^4.1.0",
+    "react-hot-loader": "^1.2.2",
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "dependencies": {
+    "react": "^0.13.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mplewis/json-pojo-frontend.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mplewis/json-pojo-frontend/issues"
+  },
+  "homepage": "https://github.com/mplewis/json-pojo-frontend"
+}

@@ -1,7 +1,10 @@
 var _ = require('lodash')
 var React = require('react')
-var Bsl = require('./bs-layout')
+var Reflux = require('reflux')
 var Loader = require('react-loader')
+
+var CompileStore = require('../stores/compile-store.js')
+var Bsl = require('./bs-layout')
 
 var ReactBootstrap = require('react-bootstrap')
 var TabbedArea = ReactBootstrap.TabbedArea
@@ -22,6 +25,10 @@ var SingleClass = React.createClass({
 
 var Output = React.createClass({
 
+  mixins: [
+    Reflux.listenTo(CompileStore, 'onCompileUpdate')
+  ],
+
   nodesFromFiles: function(files) {
     var nodes = []
     
@@ -39,13 +46,8 @@ var Output = React.createClass({
   },
 
   getInitialState: function() {
-    var files = [
-      {name: 'testFile1', data: 'lorem ipsum'},
-      {name: 'testFile2', data: 'dolor sit amet'}
-    ]
     return {
-      files: files,
-      nodes: this.nodesFromFiles(files),
+      files: [],
       visible: false,
       loaded: false
     }
@@ -55,9 +57,18 @@ var Output = React.createClass({
     console.log('Downloading all classes');
   },
 
+  onCompileUpdate: function(args) {
+    this.setState({
+      files: args.files,
+      visible: true,
+      loaded: args.loaded
+    })
+  },
+
   render: function() {
     if (!this.state.visible) return null
     
+    var nodes = this.nodesFromFiles(this.state.files)
     return (
       <Loader loaded={this.state.loaded}>
         
@@ -71,7 +82,7 @@ var Output = React.createClass({
         
         <Bsl.Row>
           <TabbedArea defaultActiveKey={1}>
-            {this.state.nodes}
+            {nodes}
           </TabbedArea>
         </Bsl.Row>
       

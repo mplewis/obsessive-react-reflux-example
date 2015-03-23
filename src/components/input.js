@@ -1,5 +1,7 @@
 var React = require('react')
 
+var Actions = require('../actions/actions')
+
 var ReactBootstrap = require('react-bootstrap')
 var InputBS = ReactBootstrap.Input
 var Button = ReactBootstrap.Button
@@ -8,6 +10,7 @@ var Input = React.createClass({
 
   onCompile: function() {
     console.log('Compiling JSON');
+    Actions.requestCompile({json: 'abcd1234', parcelable: true})
   },
 
   render: function() {

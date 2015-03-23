@@ -18,7 +18,8 @@
     "lodash": "^3.5.0",
     "react": "^0.13.1",
     "react-bootstrap": "^0.17.0",
-    "react-loader": "^1.2.0"
+    "react-loader": "^1.2.0",
+    "reflux": "^0.2.7"
   },
   "devDependencies": {
     "babel-core": "^4.7.16",

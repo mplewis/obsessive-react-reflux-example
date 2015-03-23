@@ -2,6 +2,7 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var _ = require('lodash')
 var Bsl = require('./bs-layout')
+var Loader = require('react-loader')
 
 var TabbedArea = ReactBootstrap.TabbedArea
 var TabPane = ReactBootstrap.TabPane
@@ -44,7 +45,9 @@ var Output = React.createClass({
     ]
     return {
       files: files,
-      nodes: this.nodesFromFiles(files)
+      nodes: this.nodesFromFiles(files),
+      visible: false,
+      loaded: false
     }
   },
 
@@ -53,12 +56,14 @@ var Output = React.createClass({
   },
 
   render: function() {
+    if (!this.state.visible) return null
+    
     return (
-      <span>
+      <Loader loaded={this.state.loaded}>
         
         <Bsl.Row>
           <Button
-            bsStyle="primary"
+            bsStyle="success"
             onClick={this.onDownloadAll} >
             Download All
           </Button>
@@ -70,7 +75,7 @@ var Output = React.createClass({
           </TabbedArea>
         </Bsl.Row>
       
-      </span>
+      </Loader>
     )
   }
 

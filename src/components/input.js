@@ -1,6 +1,6 @@
 var React = require('react')
-var ReactBootstrap = require('react-bootstrap')
 
+var ReactBootstrap = require('react-bootstrap')
 var InputBS = ReactBootstrap.Input
 var Button = ReactBootstrap.Button
 

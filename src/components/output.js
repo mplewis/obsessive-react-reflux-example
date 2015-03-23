@@ -1,9 +1,9 @@
-var React = require('react')
-var ReactBootstrap = require('react-bootstrap')
 var _ = require('lodash')
+var React = require('react')
 var Bsl = require('./bs-layout')
 var Loader = require('react-loader')
 
+var ReactBootstrap = require('react-bootstrap')
 var TabbedArea = ReactBootstrap.TabbedArea
 var TabPane = ReactBootstrap.TabPane
 var Button = ReactBootstrap.Button

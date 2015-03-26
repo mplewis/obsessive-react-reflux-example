@@ -2,6 +2,8 @@ var _ = require('lodash')
 var React = require('react')
 var Reflux = require('reflux')
 var Loader = require('react-loader')
+var JSZip = require('jszip')
+var saveAs = require('filesaver.js')
 
 var CompileStore = require('../stores/compile-store.js')
 var Bsl = require('./bs-layout')
@@ -54,7 +56,12 @@ var Output = React.createClass({
   },
 
   onDownloadAll: function() {
-    console.log('Downloading all classes');
+    var zip = new JSZip();
+    _.each(this.state.files, function(file) {
+      zip.file(file.name, file.data)
+    })
+    var generatedZip = zip.generate({type: 'blob'})
+    saveAs(generatedZip, 'JavaClasses.zip')
   },
 
   onCompileUpdate: function(args) {

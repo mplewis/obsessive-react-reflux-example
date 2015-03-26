@@ -2,6 +2,8 @@ var Reflux = require('reflux')
 
 var Actions = require('../actions/actions')
 
+var backend = require('../backend/backend')
+
 module.exports = Reflux.createStore({
 
   init: function() {
@@ -13,13 +15,15 @@ module.exports = Reflux.createStore({
     console.log('Will be made parcelable:', args.parcelable);
     
     this.onLoading()
-   
-    setTimeout(function() {
-      this.onCompileSuccess([
-        {name: 'testFile1', data: 'lorem ipsum'},
-        {name: 'testFile2', data: 'dolor sit amet'}
-      ])
-    }.bind(this), 1000)
+
+    backend.compileJson(args.json, function(err, files) {
+      if (err) {
+        console.log('Error:', err)
+        return
+      }
+
+      this.onCompileSuccess(files)
+    }.bind(this))
   },
 
   onLoading: function() {

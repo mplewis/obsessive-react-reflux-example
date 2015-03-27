@@ -32,26 +32,6 @@ module.exports = {
     
     request.send(jsonString)
 
-  },
-
-  addPackageDeclaration: function(classData) {
-    var PACKAGE_DECL = 'package com.mycompany.myproject.mypackage;\n\n'
-    return PACKAGE_DECL + classData
-  },
-
-  addParcelAnnotation: function(classData) {
-    var PARCEL_IMPORT = 'import org.parceler.Parcel;\n'
-    var CONSTRUCTOR_START = 'public class'
-    var PARCEL_ANNOTATION = '@Parcel\n'
-    var parts = classData.split(CONSTRUCTOR_START, 2)
-    var newData = PARCEL_IMPORT + parts[0] + PARCEL_ANNOTATION + CONSTRUCTOR_START + parts[1]
-    return newData
-  },
-
-  setCommonsLang3: function(classData) {
-    var OLD_IMPORT = 'import org.apache.commons.lang.'
-    var NEW_IMPORT = 'import org.apache.commons.lang3.'
-    return classData.split(OLD_IMPORT).join(NEW_IMPORT)
   }
 
 }

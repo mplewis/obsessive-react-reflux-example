@@ -3,6 +3,7 @@ var Reflux = require('reflux')
 var Actions = require('../actions/actions')
 
 var Backend = require('../backend/backend')
+var PostProcess = require('../backend/post-process.js')
 
 module.exports = Reflux.createStore({
 
@@ -23,11 +24,7 @@ module.exports = Reflux.createStore({
       }
 
       files.forEach(file => {
-        file.data = Backend.addPackageDeclaration(file.data)
-        file.data = Backend.setCommonsLang3(file.data)
-        if (args.parcelable) {
-          file.data = Backend.addParcelAnnotation(file.data)
-        }
+        file.data = PostProcess.processClass(file.data, args.parcelable)
       })
 
       this.onCompileSuccess(files)

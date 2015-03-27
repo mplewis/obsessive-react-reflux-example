@@ -2,7 +2,7 @@ var Reflux = require('reflux')
 
 var Actions = require('../actions/actions')
 
-var backend = require('../backend/backend')
+var Backend = require('../backend/backend')
 
 module.exports = Reflux.createStore({
 
@@ -16,11 +16,19 @@ module.exports = Reflux.createStore({
     
     this.onLoading()
 
-    backend.compileJson(args.json, function(err, files) {
+    Backend.compileJson(args.json, function(err, files) {
       if (err) {
         console.log('Error:', err)
         return
       }
+
+      files.forEach(file => {
+        file.data = Backend.addPackageDeclaration(file.data)
+        file.data = Backend.setCommonsLang3(file.data)
+        if (args.parcelable) {
+          file.data = Backend.addParcelAnnotation(file.data)
+        }
+      })
 
       this.onCompileSuccess(files)
     }.bind(this))

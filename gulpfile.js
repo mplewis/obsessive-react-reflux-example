@@ -17,14 +17,18 @@ gulp.task('clean', function(cb) {
   del(['build'], cb)
 })
 
-gulp.task('build-dev', function() {
+// Don't clean while the server is running, it causes crashes
+gulp.task('build-dev-dirty', function() {
   return gulp.src('src/index.js')
     .pipe(webpack(config.webpack.dev))
     .pipe(addsrc.append('src/index.html'))
     .pipe(gulp.dest('build'))
 })
 
-gulp.task('build-prod', function() {
+// But clean on the first build
+gulp.task('build-dev', ['clean', 'build-dev-dirty'])
+
+gulp.task('build-prod', ['clean'], function() {
   return gulp.src('src/index.js')
     .pipe(webpack(config.webpack.prod))
     .pipe(addsrc.append('src/index.html'))
@@ -36,7 +40,7 @@ gulp.task('server', ['build-dev'], function() {
 })
 
 gulp.task('watch', ['server'], function() {
-  gulp.watch(config.toWatch, ['build-dev', browserSync.reload])
+  gulp.watch(config.toWatch, ['build-dev-dirty', browserSync.reload])
 })
 
 gulp.task('default', ['clean', 'watch'])

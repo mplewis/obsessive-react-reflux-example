@@ -2,6 +2,7 @@ var React = require('react')
 var Header = require('./header')
 var Input = require('./input')
 var Output = require('./output')
+var Faq = require('./faq')
 var Bsl = require('./bs-layout')
 
 require('bootstrap/dist/css/bootstrap.min.css')
@@ -15,9 +16,14 @@ var Layout = React.createClass({
           <Header />
         </Bsl.Row>
         
-        <Bsl.Row>
-          <Input />
-        </Bsl.Row>
+        <Bsl.BareRow>
+          <Bsl.HalfCol>
+            <Input />
+          </Bsl.HalfCol>
+          <Bsl.HalfCol>
+            <Faq />
+          </Bsl.HalfCol>
+        </Bsl.BareRow>
         
         <Bsl.Row>
           <Output />

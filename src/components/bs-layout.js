@@ -22,6 +22,30 @@ module.exports = {
         </div>
       )
     }
+  }),
+
+  BareRow: React.createClass({
+  
+    render: function() {
+      return (
+        <div className="row">
+          {this.props.children}
+        </div>
+      );
+    }
+  
+  }),
+  
+  HalfCol: React.createClass({
+  
+    render: function() {
+      return (
+        <div className="col-md-6">
+          {this.props.children}
+        </div>
+      );
+    }
+  
   })
 
 }

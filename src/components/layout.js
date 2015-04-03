@@ -4,8 +4,12 @@ var Input = require('./input')
 var Output = require('./output')
 var Faq = require('./faq')
 var Bsl = require('./bs-layout')
+var hljs = require('highlight.js')
 
 require('bootstrap/dist/css/bootstrap.min.css')
+require('highlight.js/styles/tomorrow.css')
+
+hljs.initHighlightingOnLoad()
 
 var Layout = React.createClass({
   render: function() {

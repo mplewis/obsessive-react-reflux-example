@@ -4,15 +4,13 @@ var Input = require('./input')
 var Output = require('./output')
 var Faq = require('./faq')
 var Bsl = require('./bs-layout')
-var hljs = require('highlight.js')
 
 require('bootstrap/dist/css/bootstrap.min.css')
 require('highlight.js/styles/tomorrow.css')
 require('./body.styl')
 
-hljs.initHighlightingOnLoad()
-
 var Layout = React.createClass({
+
   render: function() {
     return (
       <Bsl.Container>
@@ -37,6 +35,7 @@ var Layout = React.createClass({
       </Bsl.Container>
     )
   }
+
 })
 
 module.exports = Layout

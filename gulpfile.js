@@ -1,6 +1,7 @@
 var gulp = require('gulp')
 var webpack = require('gulp-webpack')
 var addsrc = require('gulp-add-src')
+var ghPages = require('gulp-gh-pages')
 var browserSync = require('browser-sync')
 var del = require('del')
 
@@ -41,6 +42,11 @@ gulp.task('server', ['build-dev'], function() {
 
 gulp.task('watch', ['server'], function() {
   gulp.watch(config.toWatch, ['build-dev-dirty', browserSync.reload])
+})
+
+gulp.task('deploy', ['clean', 'build-prod'], function() {
+  return gulp.src('./build/**/*')
+    .pipe(ghPages())
 })
 
 gulp.task('default', ['clean', 'watch'])

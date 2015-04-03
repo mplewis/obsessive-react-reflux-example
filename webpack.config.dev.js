@@ -1,5 +1,5 @@
 var config = require('./webpack.config.common.js')
 
-config.devtool = 'eval-source-map'
+config.devtool = 'eval'
 
 module.exports = config

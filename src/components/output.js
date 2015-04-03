@@ -13,6 +13,8 @@ var TabbedArea = ReactBootstrap.TabbedArea
 var TabPane = ReactBootstrap.TabPane
 var Button = ReactBootstrap.Button
 
+require('./output.styl')
+
 var SingleClass = React.createClass({
 
   render: function() {

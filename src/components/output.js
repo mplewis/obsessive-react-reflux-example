@@ -82,6 +82,7 @@ var Output = React.createClass({
         <Bsl.Row>
           <Button
             bsStyle="success"
+            bsSize="large"
             onClick={this.onDownloadAll} >
             Download All
           </Button>

@@ -8,6 +8,7 @@ var hljs = require('highlight.js')
 
 require('bootstrap/dist/css/bootstrap.min.css')
 require('highlight.js/styles/tomorrow.css')
+require('./body.styl')
 
 hljs.initHighlightingOnLoad()
 

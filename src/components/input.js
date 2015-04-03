@@ -51,6 +51,7 @@ var Input = React.createClass({
         
         <Button
           bsStyle="primary"
+          bsSize="large"
           onClick={this.onCompile} >
           Compile POJOs
         </Button>

@@ -27,8 +27,9 @@ var ReadMore = React.createClass({
       return (
         <Button
           bsStyle="link"
+          bsSize="large"
           onClick={this.showMore} >
-          Read More
+          + Read More
         </Button>
       )
     }

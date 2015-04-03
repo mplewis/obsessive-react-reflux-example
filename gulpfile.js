@@ -54,7 +54,7 @@ gulp.task('server', ['build-dev-dirty'], function() {
 
 // Watch the app files for changes, rebuild and serve
 gulp.task('watch', ['server'], function() {
-  gulp.watch(config.toWatch, ['build-dev-dirty', browserSync.reload])
+  gulp.watch(config.paths.toWatch, ['build-dev-dirty', browserSync.reload])
 })
 
 // Deploy the static site to GitHub Pages

@@ -5,6 +5,7 @@ var ghPages = require('gulp-gh-pages')
 var browserSync = require('browser-sync')
 var del = require('del')
 var runSequence = require('run-sequence')
+var file = require('gulp-file')
 
 var config = {
   paths: {
@@ -12,6 +13,10 @@ var config = {
     indexHtml: 'src/index.html',
     outputDir: 'build',
     toWatch: ['src/**']
+  },
+  deploy: {
+    push: false,
+    cname: 'www.json2pojo.com'
   },
   browserSync: {server: {baseDir: 'build'}},
   webpack: {
@@ -60,7 +65,8 @@ gulp.task('watch', ['server'], function() {
 // Deploy the static site to GitHub Pages
 gulp.task('deploy', ['clean', 'build-prod'], function() {
   return gulp.src(config.paths.outputDir + '/**/*')
-    .pipe(ghPages())
+    .pipe(file('CNAME', config.deploy.cname))
+    .pipe(ghPages(config.deploy))
 })
 
 // Default: Clean build and start the dev server

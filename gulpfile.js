@@ -15,7 +15,6 @@ var config = {
     toWatch: ['src/**']
   },
   deploy: {
-    push: false,
     cname: 'www.json2pojo.com'
   },
   browserSync: {server: {baseDir: 'build'}},

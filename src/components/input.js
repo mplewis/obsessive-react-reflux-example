@@ -1,13 +1,30 @@
 var React = require('react')
 
+// Get the app's common Reflux actions. The input components are the ones that
+// run actions. Actions do stuff to update the data stores.
 var Actions = require('../actions/actions')
 
+/* Using ReactBootstrap elements makes my Bootstrap elements in React more
+ * declarative. Without ReactBootstrap, I would have to specify all the element
+ * attributes as inline classes. Now I just pick the element - for example, a
+ * Bootstrap button - and specify its attributes - such as size and style -
+ * directly as XML attributes.
+ */
 var ReactBootstrap = require('react-bootstrap')
+// I had to rename ReactBootstrap's Input component to InputBS because this
+// component is called Input.
 var InputBS = ReactBootstrap.Input
-var Button = ReactBootstrap.Button
+var Button = ReactBootstrap.Button  // Exactly what it says on the tin.
 
 var Input = React.createClass({
 
+  /* This class has two bits of state:
+   *   - json: holds the JSON entered into the input box
+   *   - parcelable: the Boolean value of the "Parcelable for Android" checkbox
+   * 
+   * Each of these bits of state are updated whenever that component's state
+   * changes, i.e. the user types in the JSON box or clicks the checkbox.
+   */
   getInitialState: function() {
     return {
       json: '',

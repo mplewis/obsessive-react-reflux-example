@@ -1,3 +1,14 @@
+<!--
+    This file is turned into HTML on-the-fly by Webpack's markdown-loader.
+    The responsible line is in webpack.config.common.js:
+
+        { test: /\.md$/, loader: "html!markdown" }
+
+    This means:
+        * Apply to any file that matches the regex \.md$
+        * Parse that file with markdown-loader, then pipe it into html-loader
+-->
+
 **What's a POJO?**
 
 A POJO is a Plain Old Java Object. Here's an example of a Friend class that could represent a user on a social network:

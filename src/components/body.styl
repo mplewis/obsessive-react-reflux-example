@@ -1,5 +1,13 @@
+// This seems like it would be the only style for the entire single page app,
+// but I included (required) other styles in the specific components' files
+// directly. If the files aren't used, the styles don't get included.
+// It's so modular!
+
+// Google Fonts lets me embed pretty fonts without having to ship them alongside
+// the app.
 @import url('http://fonts.googleapis.com/css?family=Dosis:300,500,700')
 
+// A little bit of spacing for the body elements.
 body
   font-family: 'Dosis', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
   font-size: 18px
@@ -7,5 +15,6 @@ body
   margin-top: 40px
   margin-bottom: 40px
 
+// I like to specify font weights because I'm picky about typography
 strong
   font-weight: 700
